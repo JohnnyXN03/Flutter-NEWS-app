@@ -40,81 +40,47 @@ class _TechPageState extends State<Tech> {
             )
           : ListView.builder(
               itemBuilder: (context, index) {
-                return Card(
-                  elevation: 2,
-                  margin: EdgeInsets.all(15),
-                  color: Colors.white,
-                  child: Container(
-                    margin: EdgeInsets.all(5),
-                    padding: EdgeInsets.all(5),
-                    height: 330,
-                    child: Row(children: <Widget>[
-                      Expanded(
-                        child: Container(
-                            child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  'Time : ' +
-                                      tec[index]['publishedAt'].toString(),
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.normal),
-                                ),
-                                Text(
-                                  'Source:- ' + tec[index]['author'].toString(),
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              height: 100,
-                              padding: EdgeInsets.all(10),
-                              child: tec[index]['urlToImage'] == null
-                                  ? Text('No image')
-                                  : Image.network(
-                                      tec[index]['urlToImage'],
-                                      fit: BoxFit.cover,
-                                    ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.all(5),
-                              padding: EdgeInsets.all(20),
-                              height: 87,
-                              color: Colors.black12,
-                              child: Text(
-                                'Headline : ' + tec[index]['title'].toString(),
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w300,
-                                  fontStyle: FontStyle.italic,
-                                  fontSize: 17,
-                                ),
+                return Container(
+                  height: 100,
+                  child: Card(
+                    elevation: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 100,
+                          width: 140,
+                          child: Container(
+                            padding: EdgeInsets.all(2),
+                            child: tec[index]['urlToImage'] == null
+                                ? Text('No image')
+                                : Image.network(
+                                    tec[index]['urlToImage'],
+                                    fit: BoxFit.fill,
+                                  ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 240,
+                          height: 100,
+                          child: Container(
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              '' + tec[index]['title'],
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Divider(),
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              child: Text(
-                                'Story: ' + tec[index]['description'].toString(),
-                                style: TextStyle(
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
-                        )),
-                      ),
-                    ]),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
-              itemCount: tec == null ? 0 : tec.length,
+              itemCount: tec.length == null ? 0 : tec.length,
             ),
     );
   }

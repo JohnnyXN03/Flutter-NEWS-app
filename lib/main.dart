@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsx/health.dart';
 import 'package:newsx/social.dart';
-import './topheadline.dart';
-import './india.dart';
+import './dashboard.dart';
 import './sports.dart';
 import './social.dart';
 import './sci.dart';
@@ -15,14 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 7,
+        length: 6,
         child: Scaffold(
           appBar: AppBar(
             elevation: 5,
-            backgroundColor: Colors.teal,
+            backgroundColor: Color(0xff273C75),
             bottom: TabBar(
               isScrollable: true,
               labelColor: Colors.white,
@@ -33,13 +31,9 @@ class MyApp extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.w300,
                   textBaseline: TextBaseline.ideographic),
-          
               tabs: [
                 Tab(
                   text: 'Top',
-                ),
-                Tab(
-                  text: 'India',
                 ),
                 Tab(text: 'Sports'),
                 Tab(text: 'Social'),
@@ -48,10 +42,9 @@ class MyApp extends StatelessWidget {
                 Tab(text: 'Health'),
               ],
             ),
-            title: Text('NewsX'),
+            title: Text('News Tw'),
           ),
           body: TabBarView(children: [
-            TopHeadlinePage(),
             IndiaPage(),
             Sports(),
             Social(),
