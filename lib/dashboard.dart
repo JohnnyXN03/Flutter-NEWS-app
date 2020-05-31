@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:newsx/descr.dart';
 
 class IndiaPage extends StatefulWidget {
   @override
@@ -68,7 +69,13 @@ class _IndiaPageState extends State<IndiaPage> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        var url = topnews[index]['url'];
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Descr(url)));
+                      },
                       hoverColor: Colors.transparent,
                       child: Container(
                         margin:
@@ -139,40 +146,50 @@ class _IndiaPageState extends State<IndiaPage> {
                 itemBuilder: (context, index) {
                   return Container(
                     height: 100,
-                    child: Card(
-                      elevation: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          SizedBox(
-                            height: 100,
-                            width: 140,
-                            child: Container(
-                              padding: EdgeInsets.all(2),
-                              child: india[index]['urlToImage'] == null
-                                  ? Text('No image')
-                                  : Image.network(
-                                      india[index]['urlToImage'],
-                                      fit: BoxFit.fill,
-                                    ),
+                    child: InkWell(
+                      onTap: () {
+                        var url1 = india[index]['url'];
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    Descr(url1)));
+                      },
+                      child: Card(
+                        elevation: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(
+                              height: 100,
+                              width: 140,
+                              child: Container(
+                                padding: EdgeInsets.all(2),
+                                child: india[index]['urlToImage'] == null
+                                    ? Text('No image')
+                                    : Image.network(
+                                        india[index]['urlToImage'],
+                                        fit: BoxFit.fill,
+                                      ),
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 200,
-                            height: 100,
-                            child: Container(
-                              padding: EdgeInsets.all(10),
-                              child: Text(
-                                '' + india[index]['title'],
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                            SizedBox(
+                              width: 200,
+                              height: 100,
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  '' + india[index]['title'],
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );

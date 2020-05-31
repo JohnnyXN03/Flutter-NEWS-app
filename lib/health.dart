@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'descr.dart';
 
 class Hea extends StatefulWidget {
   @override
@@ -42,40 +43,49 @@ class _HeaPageState extends State<Hea> {
               itemBuilder: (context, index) {
                 return Container(
                   height: 100,
-                  child: Card(
-                    elevation: 1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 100,
-                          width: 140,
-                          child: Container(
-                            padding: EdgeInsets.all(2),
-                            child: hea[index]['urlToImage'] == null
-                                ? Text('No image')
-                                : Image.network(
-                                    hea[index]['urlToImage'],
-                                    fit: BoxFit.fill,
-                                  ),
+                  child: InkWell(
+                    onTap: () {
+                      var url = hea[index]['url'];
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Descr(url)));
+                    },
+                    child: Card(
+                      elevation: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 100,
+                            width: 140,
+                            child: Container(
+                              padding: EdgeInsets.all(2),
+                              child: hea[index]['urlToImage'] == null
+                                  ? Text('No image')
+                                  : Image.network(
+                                      hea[index]['urlToImage'],
+                                      fit: BoxFit.fill,
+                                    ),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 240,
-                          height: 100,
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              '' + hea[index]['title'],
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
+                          SizedBox(
+                            width: 240,
+                            height: 100,
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              child: Text(
+                                '' + hea[index]['title'],
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );

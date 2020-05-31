@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'descr.dart';
+
 class Social extends StatefulWidget {
   @override
   _SocialPageState createState() => _SocialPageState();
@@ -42,40 +44,49 @@ class _SocialPageState extends State<Social> {
               itemBuilder: (context, index) {
                 return Container(
                   height: 100,
-                  child: Card(
-                    elevation: 1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 100,
-                          width: 140,
-                          child: Container(
-                            padding: EdgeInsets.all(2),
-                            child: so[index]['urlToImage'] == null
-                                ? Text('No image')
-                                : Image.network(
-                                    so[index]['urlToImage'],
-                                    fit: BoxFit.fill,
-                                  ),
+                  child: InkWell(
+                    onTap: () {
+                      var url = so[index]['url'];
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Descr(url)));
+                    },
+                    child: Card(
+                      elevation: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 100,
+                            width: 140,
+                            child: Container(
+                              padding: EdgeInsets.all(2),
+                              child: so[index]['urlToImage'] == null
+                                  ? Text('No image')
+                                  : Image.network(
+                                      so[index]['urlToImage'],
+                                      fit: BoxFit.fill,
+                                    ),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 240,
-                          height: 100,
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              '' + so[index]['title'],
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
+                          SizedBox(
+                            width: 240,
+                            height: 100,
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              child: Text(
+                                '' + so[index]['title'],
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
