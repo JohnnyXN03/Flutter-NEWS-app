@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'descr.dart';
-
+import 'package:flutter_share_me/flutter_share_me.dart';
 class Hea extends StatefulWidget {
   @override
   _HeaPageState createState() => _HeaPageState();
@@ -90,7 +90,12 @@ class _HeaPageState extends State<Hea> {
                                 Icons.share,
                                 size: 20,
                               ),
-                              onPressed: () {})
+                              onPressed: ()async {
+                                FlutterShareMe().shareToWhatsApp(
+                                            msg:
+                                                'Shared Through Tanwave News App. ' +
+                                                    hea[index]['url']);
+                              })
                         ],
                       ),
                     ),

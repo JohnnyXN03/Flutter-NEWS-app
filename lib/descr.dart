@@ -12,12 +12,16 @@ class Descr extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'Full Story',
-          style: TextStyle(color: Colors.white, fontSize: 24),
+          style: TextStyle(
+              fontSize: 24,
+              fontFamily: 'OpenSans',
+              fontWeight: FontWeight.w600),
         ),
-        backgroundColor: Color(0xff273C75),
       ),
+      backgroundColor: Color(0xff273C75),
       body: WebviewScaffold(url: urlnew) == null
           ? Center(
               child: CircularProgressIndicator(

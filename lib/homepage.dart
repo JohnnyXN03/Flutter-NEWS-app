@@ -46,7 +46,7 @@ class Home extends StatelessWidget {
               ],
             ),
             title: Text(
-              'News Tw',
+              'Tanwave News',
               style: TextStyle(
                 fontSize: 23,
                 fontFamily: 'OpenSans',

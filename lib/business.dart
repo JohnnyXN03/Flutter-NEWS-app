@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'descr.dart';
+import 'package:flutter_share_me/flutter_share_me.dart';
 
 class Busi extends StatefulWidget {
   @override
@@ -90,7 +91,12 @@ class _BusiPageState extends State<Busi> {
                                 Icons.share,
                                 size: 20,
                               ),
-                              onPressed: () {})
+                              onPressed: ()async {
+                                FlutterShareMe().shareToWhatsApp(
+                                            msg:
+                                                'Shared Through Tanwave News App. ' +
+                                                    busi[index]['url']);
+                              })
                         ],
                       ),
                     ),
