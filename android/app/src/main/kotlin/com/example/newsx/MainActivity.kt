@@ -1,4 +1,4 @@
-package com.example.newsx
+package com.tanwave.News Tw
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
