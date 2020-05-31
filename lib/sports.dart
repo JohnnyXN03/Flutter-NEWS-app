@@ -37,7 +37,7 @@ class _SportsPageState extends State<Sports> {
       body: spt == null
           ? Center(
               child: CircularProgressIndicator(
-                backgroundColor: Colors.orange[300],
+                backgroundColor: Colors.blue,
               ),
             )
           : ListView.builder(
@@ -46,24 +46,25 @@ class _SportsPageState extends State<Sports> {
                   height: 100,
                   child: InkWell(
                     onTap: () {
-                      var url = spt[index]['url'];
+                      var url1 = spt[index]['url'];
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => Descr(url)));
+                              builder: (BuildContext context) => Descr(url1)));
                     },
                     child: Card(
-                      elevation: 1,
+                      color: Colors.white,
+                      elevation: 0.2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           SizedBox(
-                            height: 100,
-                            width: 140,
+                            height: 80,
+                            width: 110,
                             child: Container(
-                              padding: EdgeInsets.all(2),
+                              padding: EdgeInsets.all(8),
                               child: spt[index]['urlToImage'] == null
-                                  ? Text('No image')
+                                  ? Image.asset('assets/newsback.jpg')
                                   : Image.network(
                                       spt[index]['urlToImage'],
                                       fit: BoxFit.fill,
@@ -71,20 +72,26 @@ class _SportsPageState extends State<Sports> {
                             ),
                           ),
                           SizedBox(
-                            width: 240,
+                            width: 250,
                             height: 100,
                             child: Container(
-                              padding: EdgeInsets.all(10),
+                              padding: EdgeInsets.all(12),
                               child: Text(
                                 '' + spt[index]['title'],
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 14,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
                           ),
+                          IconButton(
+                              icon: Icon(
+                                Icons.share,
+                                size: 20,
+                              ),
+                              onPressed: () {})
                         ],
                       ),
                     ),

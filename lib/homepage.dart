@@ -7,6 +7,7 @@ import './social.dart';
 import './sci.dart';
 import './tech.dart';
 import './health.dart';
+import './business.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -14,20 +15,21 @@ class Home extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 6,
+        length: 7,
         child: Scaffold(
           appBar: AppBar(
-            elevation: 5,
+            elevation: 2,
             backgroundColor: Color(0xff273C75),
             bottom: TabBar(
               isScrollable: true,
               labelColor: Colors.white,
-              indicatorColor: Colors.redAccent,
+              indicatorColor: Colors.white,
               labelPadding: EdgeInsets.all(10),
               unselectedLabelColor: Colors.black,
               labelStyle: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w300,
+                  fontFamily: 'OpenSans',
+                  fontSize: 19,
+                  fontWeight: FontWeight.w600,
                   textBaseline: TextBaseline.ideographic),
               tabs: [
                 Tab(
@@ -35,17 +37,28 @@ class Home extends StatelessWidget {
                 ),
                 Tab(text: 'Sports'),
                 Tab(text: 'Social'),
-                Tab(text: 'Scienc'),
+                Tab(
+                  text: 'Business',
+                ),
+                Tab(text: 'Science'),
                 Tab(text: 'Tech'),
                 Tab(text: 'Health'),
               ],
             ),
-            title: Text('News Tw'),
+            title: Text(
+              'News Tw',
+              style: TextStyle(
+                fontSize: 23,
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.w800,
+              ),
+            ),
           ),
           body: TabBarView(children: [
             IndiaPage(),
             Sports(),
             Social(),
+            Busi(),
             Sci(),
             Tech(),
             Hea(),

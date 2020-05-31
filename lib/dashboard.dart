@@ -49,81 +49,89 @@ class _IndiaPageState extends State<IndiaPage> {
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(15),
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              'Highlights',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
           SingleChildScrollView(
             child: Container(
-              height: 300,
+              padding: EdgeInsets.all(4),
+              height: 280,
               child: ListView.builder(
                   itemCount: topnews.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        var url = topnews[index]['url'];
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => Descr(url)));
-                      },
-                      hoverColor: Colors.transparent,
-                      child: Container(
-                        margin:
-                            EdgeInsets.symmetric(vertical: 20, horizontal: 5),
-                        padding: EdgeInsets.all(5),
-                        child: SizedBox(
-                          height: 300,
-                          width: 400,
-                          child: Card(
-                            margin: EdgeInsets.all(10),
-                            elevation: 10,
-                            child: Stack(
-                              fit: StackFit.passthrough,
-                              children: <Widget>[
-                                Container(
-                                  child: topnews[index]['urlToImage'] == null
-                                      ? Text('No image')
-                                      : Image.network(
-                                          topnews[index]['urlToImage'],
-                                          alignment: Alignment.center,
-                                          fit: BoxFit.fill,
-                                        ),
-                                ),
-                                SizedBox(
-                                  height: 50,
-                                  width: 400,
-                                  child: Container(
-                                    alignment: Alignment.bottomCenter,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white10,
-                                    ),
-                                    padding: EdgeInsets.all(20),
-                                    child: Text(
-                                      '' + topnews[index]['title'].toString(),
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
+                    return topnews[index] == null
+                        ? Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : InkWell(
+                            onTap: () {
+                              var url = topnews[index]['url'];
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Descr(url)));
+                            },
+                            hoverColor: Colors.transparent,
+                            child: Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 3),
+                              padding: EdgeInsets.all(5),
+                              child: SizedBox(
+                                height: 300,
+                                width: 400,
+                                child: Card(
+                                  margin: EdgeInsets.all(10),
+                                  elevation: 5,
+                                  child: Stack(
+                                    fit: StackFit.passthrough,
+                                    children: <Widget>[
+                                      Container(
+                                        child: topnews[index]['urlToImage'] ==
+                                                null
+                                            ? Image.asset('assets/newsback.jpg')
+                                            : Image.network(
+                                                topnews[index]['urlToImage'],
+                                                alignment: Alignment.center,
+                                                fit: BoxFit.fill,
+                                              ),
                                       ),
-                                    ),
+                                      SizedBox(
+                                        height: 50,
+                                        width: 400,
+                                        child: Container(
+                                          alignment: Alignment.bottomCenter,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white10,
+                                          ),
+                                          padding: EdgeInsets.all(20),
+                                          child: Text(
+                                            '' +
+                                                topnews[index]['title']
+                                                    .toString(),
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'OpenSans',
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    );
+                          );
                   }),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            child: Text(
+              'Swipe left for more highlights',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.w400),
             ),
           ),
           Container(
@@ -132,8 +140,9 @@ class _IndiaPageState extends State<IndiaPage> {
             child: Text(
               'Top Headlines',
               style: TextStyle(
+                fontFamily: 'OpenSans',
                 color: Colors.black,
-                fontSize: 25,
+                fontSize: 21,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -141,58 +150,69 @@ class _IndiaPageState extends State<IndiaPage> {
           SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Container(
-              height: 320,
+              height: 385,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return Container(
-                    height: 100,
-                    child: InkWell(
-                      onTap: () {
-                        var url1 = india[index]['url'];
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    Descr(url1)));
-                      },
-                      child: Card(
-                        elevation: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 100,
-                              width: 140,
-                              child: Container(
-                                padding: EdgeInsets.all(2),
-                                child: india[index]['urlToImage'] == null
-                                    ? Text('No image')
-                                    : Image.network(
-                                        india[index]['urlToImage'],
-                                        fit: BoxFit.fill,
-                                      ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 200,
-                              height: 100,
-                              child: Container(
-                                padding: EdgeInsets.all(10),
-                                child: Text(
-                                  '' + india[index]['title'],
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
+                  return india[index] == null
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Container(
+                          height: 100,
+                          child: InkWell(
+                            onTap: () {
+                              var url1 = india[index]['url'];
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Descr(url1)));
+                            },
+                            child: Card(
+                              color: Colors.white,
+                              elevation: 0.2,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: 80,
+                                    width: 110,
+                                    child: Container(
+                                      padding: EdgeInsets.all(8),
+                                      child: india[index]['urlToImage'] == null
+                                          ? Image.asset('assets/newsback.jpg')
+                                          : Image.network(
+                                              india[index]['urlToImage'],
+                                              fit: BoxFit.fill,
+                                            ),
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(
+                                    width: 250,
+                                    height: 100,
+                                    child: Container(
+                                      padding: EdgeInsets.all(12),
+                                      child: Text(
+                                        '' + india[index]['title'],
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  IconButton(
+                                      icon: Icon(
+                                        Icons.share,
+                                        size: 20,
+                                      ),
+                                      onPressed: () {})
+                                ],
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
+                          ),
+                        );
                 },
                 itemCount: india.length == null ? 0 : india.length,
               ),

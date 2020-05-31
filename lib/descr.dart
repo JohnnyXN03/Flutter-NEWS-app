@@ -18,11 +18,17 @@ class Descr extends StatelessWidget {
         ),
         backgroundColor: Color(0xff273C75),
       ),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: WebviewScaffold(url: urlnew),
-      ),
+      body: WebviewScaffold(url: urlnew) == null
+          ? Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.blue,
+              ),
+            )
+          : Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: WebviewScaffold(url: urlnew),
+            ),
     );
   }
 }

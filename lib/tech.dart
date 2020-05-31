@@ -36,9 +36,7 @@ class _TechPageState extends State<Tech> {
     return Scaffold(
       body: tec == null
           ? Center(
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.orange[300],
-              ),
+              child: CircularProgressIndicator(backgroundColor: Colors.blue),
             )
           : ListView.builder(
               itemBuilder: (context, index) {
@@ -46,24 +44,25 @@ class _TechPageState extends State<Tech> {
                   height: 100,
                   child: InkWell(
                     onTap: () {
-                      var url = tec[index]['url'];
+                      var url1 = tec[index]['url'];
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => Descr(url)));
+                              builder: (BuildContext context) => Descr(url1)));
                     },
                     child: Card(
-                      elevation: 1,
+                      color: Colors.white,
+                      elevation: 0.2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           SizedBox(
-                            height: 100,
-                            width: 140,
+                            height: 80,
+                            width: 110,
                             child: Container(
-                              padding: EdgeInsets.all(2),
+                              padding: EdgeInsets.all(8),
                               child: tec[index]['urlToImage'] == null
-                                  ? Text('No image')
+                                  ? Image.asset('assets/newsback.jpg')
                                   : Image.network(
                                       tec[index]['urlToImage'],
                                       fit: BoxFit.fill,
@@ -71,20 +70,26 @@ class _TechPageState extends State<Tech> {
                             ),
                           ),
                           SizedBox(
-                            width: 240,
+                            width: 250,
                             height: 100,
                             child: Container(
-                              padding: EdgeInsets.all(10),
+                              padding: EdgeInsets.all(12),
                               child: Text(
                                 '' + tec[index]['title'],
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 14,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
                           ),
+                          IconButton(
+                              icon: Icon(
+                                Icons.share,
+                                size: 20,
+                              ),
+                              onPressed: () {})
                         ],
                       ),
                     ),

@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'descr.dart';
 
-class Hea extends StatefulWidget {
+class Busi extends StatefulWidget {
   @override
-  _HeaPageState createState() => _HeaPageState();
+  _BusiPageState createState() => _BusiPageState();
 }
 
-class _HeaPageState extends State<Hea> {
-  List hea;
+class _BusiPageState extends State<Busi> {
+  List busi;
   Future<List<dynamic>> fetchData() async {
     http.Response response = await http.get(
-        'http://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=17141852308c45f9813b14ce49f70996');
+        'http://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=17141852308c45f9813b14ce49f70996');
     setState(() {
-      hea = json.decode(response.body)['articles'];
+      busi = json.decode(response.body)['articles'];
     });
   }
 
@@ -33,7 +33,7 @@ class _HeaPageState extends State<Hea> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: hea == null
+      body: busi == null
           ? Center(
               child: CircularProgressIndicator(
                 backgroundColor: Colors.blue,
@@ -45,7 +45,7 @@ class _HeaPageState extends State<Hea> {
                   height: 100,
                   child: InkWell(
                     onTap: () {
-                      var url1 = hea[index]['url'];
+                      var url1 = busi[index]['url'];
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -62,10 +62,10 @@ class _HeaPageState extends State<Hea> {
                             width: 110,
                             child: Container(
                               padding: EdgeInsets.all(8),
-                              child: hea[index]['urlToImage'] == null
+                              child: busi[index]['urlToImage'] == null
                                   ? Image.asset('assets/newsback.jpg')
                                   : Image.network(
-                                      hea[index]['urlToImage'],
+                                      busi[index]['urlToImage'],
                                       fit: BoxFit.fill,
                                     ),
                             ),
@@ -76,7 +76,7 @@ class _HeaPageState extends State<Hea> {
                             child: Container(
                               padding: EdgeInsets.all(12),
                               child: Text(
-                                '' + hea[index]['title'],
+                                '' + busi[index]['title'],
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -97,7 +97,7 @@ class _HeaPageState extends State<Hea> {
                   ),
                 );
               },
-              itemCount: hea.length == null ? 0 : hea.length,
+              itemCount: busi.length == null ? 0 : busi.length,
             ),
     );
   }
