@@ -25,7 +25,7 @@ class Home extends StatelessWidget {
               labelColor: Colors.white,
               indicatorColor: Colors.white,
               labelPadding: EdgeInsets.all(10),
-              unselectedLabelColor: Colors.black,
+              unselectedLabelColor: Colors.white38,
               labelStyle: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 19,

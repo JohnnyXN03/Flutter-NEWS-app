@@ -13,6 +13,7 @@ class Descr extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor: Color(0xff273C75),
         title: Text(
           'Full Story',
           style: TextStyle(
