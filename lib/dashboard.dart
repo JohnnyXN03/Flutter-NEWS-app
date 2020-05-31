@@ -14,17 +14,20 @@ class IndiaPage extends StatefulWidget {
 class _IndiaPageState extends State<IndiaPage> {
   List india = [];
   List topnews = [];
+
   Future<List<dynamic>> fetchData() async {
+    Random();
     http.Response response = await http.get(
-        'http://newsapi.org/v2/top-headlines?country=in&apiKey=17141852308c45f9813b14ce49f70996');
+        'http://newsapi.org/v2/top-headlines?country=in&&apiKey=17141852308c45f9813b14ce49f70996');
     setState(() {
       india = json.decode(response.body)['articles'];
     });
   }
 
   Future<List<dynamic>> fetchDatatop() async {
+    Random();
     http.Response response = await http.get(
-        'http://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=17141852308c45f9813b14ce49f70996');
+        'http://newsapi.org/v2/top-headlines?country=in&apiKey=17141852308c45f9813b14ce49f70996');
     setState(() {
       topnews = json.decode(response.body)['articles'];
     });
