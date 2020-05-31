@@ -12,30 +12,19 @@ class IndiaPage extends StatefulWidget {
 }
 
 class _IndiaPageState extends State<IndiaPage> {
-  var api = [
-    '"http://newsapi.org/v2/top-headlines?country=in&apiKey=17141852308c45f9813b14ce49f70996"',
-    '"http://newsapi.org/v2/top-headlines?country=in&apiKey=96e55f5734e14f8d9a7706d71e2178de"',
-    '"http://newsapi.org/v2/top-headlines?country=in&apiKey=7a3e48057cfb45b5b0d3b835e10c4c00"'
-  ];
-  var apikey2 = [
-    'http://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=17141852308c45f9813b14ce49f70996',
-    'http://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=96e55f5734e14f8d9a7706d71e2178de',
-    'http://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=7a3e48057cfb45b5b0d3b835e10c4c00'
-  ];
-  final _random = new Random();
-  final _random1 = new Random();
-
   List india = [];
   List topnews = [];
   Future<List<dynamic>> fetchData() async {
-    http.Response response = await http.get(_random.nextInt(api.length));
+    http.Response response = await http.get(
+        'http://newsapi.org/v2/top-headlines?country=in&apiKey=17141852308c45f9813b14ce49f70996');
     setState(() {
       india = json.decode(response.body)['articles'];
     });
   }
 
   Future<List<dynamic>> fetchDatatop() async {
-    http.Response response = await http.get(_random1.nextInt(apikey2.length));
+    http.Response response = await http.get(
+        'http://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=17141852308c45f9813b14ce49f70996');
     setState(() {
       topnews = json.decode(response.body)['articles'];
     });
