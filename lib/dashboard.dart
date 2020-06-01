@@ -17,10 +17,11 @@ class _IndiaPageState extends State<IndiaPage> {
 
   Future<List<dynamic>> fetchData() async {
     http.Response response = await http.get(
-        'http://newsapi.org/v2/top-headlines?country=in&&apiKey=17141852308c45f9813b14ce49f70996');
+        'http://newsapi.org/v2/top-headlines?country=in&apiKey=17141852308c45f9813b14ce49f70996');
     setState(() {
       india = json.decode(response.body)['articles'];
     });
+    print(india.length);
   }
 
   Future<List<dynamic>> fetchDatatop() async {
@@ -200,7 +201,7 @@ class _IndiaPageState extends State<IndiaPage> {
                   ),
                 );
               },
-              itemCount: india.length == null ? 0 : india.length,
+              itemCount: india == null ? 0 : india.length,
             ),
           ),
         ],
